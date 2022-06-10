@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('display');
+});
+
+Route::get('/create', [DataController::class, 'create']);
+
+Route::post('/create', [DataController::class, 'store']);
+
+Route::get('/update', function () {
+    return view('update');
+});
+
+Route::get('/delete', function () {
+    return view('delete');
 });
