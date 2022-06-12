@@ -16,18 +16,47 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+		font-family: 'Nunito', sans-serif;
+		background: linear-gradient(0deg, #61714d, #797f59 25%, #928c66 50%, #aa9a75 75%, #c2a887);
+                background-attachment: fixed;
+	    }
+            #header {
+                position: relative;
+                animation: moveDown 0.3s;
+                animation-timing-function: linear;
+            }
+            #table {
+                position: relative;
+                animation: moveRight 0.3s;
+                animation-timing-function: linear;
+	    }
+	    table.table-bordered {
+		border: 1px solid black;
+	    }
+	    table.table-bordered > thead > tr > th {
+		border: 1px solid black;
+	    }
+	    table.table-bordered > tbody > tr > td {
+		border: 1px solid black;
+	    }
+            @keyframes moveDown {
+                from {top: -20px;}
+                to {top: 0px;}
+            }
+            @keyframes moveRight {
+                from {left: -20px;}
+                to {left: 0px;}
             }
         </style>
     </head>
     <body class="antialiased">
 	<!-- header -->
-	<div class="jumbotron">
+	<div style="background:transparent" id="header" class="jumbotron">
 		<h1 class="text-center">Data Table</h1>
 	</div>
 	<div class="container">
 		<!-- table to display data -->
-		<table class="table">
+		<table id="table" class="table table-bordered">
 			<thead>
 				<tr>
 					<th>ID</th>

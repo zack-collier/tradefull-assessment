@@ -17,28 +17,65 @@
 	<style>
 	    body {
 		font-family: 'Nunito', sans-serif;
+                background: linear-gradient(0deg, #61714d, #797f59 25%, #928c66 50%, #aa9a75 75%, #c2a887);
+                background-attachment: fixed;
 	    }
 	    input {
 		background-color: #eee;
 	    }
+            #header {
+                position: relative;
+                animation: moveDown 0.3s;
+                animation-timing-function: linear;
+            }
+            #form {
+                position: relative;
+                animation: moveRight 0.3s;
+                animation-timing-function: linear;
+            }
+            #error {
+                position: relative;
+                animation: shake 0.3s;
+            }
+            @keyframes moveDown {
+                from {top: -20px;}
+                to {top: 0px;}
+            }
+            @keyframes moveRight {
+                from {left: -20px;}
+                to {left: 0px;}
+            }
+            @keyframes shake {
+                0% { transform: translate(1px, 1px); }
+                10% { transform: translate(0px, 0px); }
+                20% { transform: translate(-1px, 0px); }
+                30% { transform: translate(1px, 1px); }
+                40% { transform: translate(0px, -1px); }
+                50% { transform: translate(0px, 1px); }
+                60% { transform: translate(-1px, 0px); }
+                70% { transform: translate(1px, 0px); }
+                80% { transform: translate(-1px, -1px); }
+                90% { transform: translate(0px, 1px); }
+                100% { transform: translate(0px, -1px); }
+            }
 	</style>
     </head>
     <body class="antialiased">
 	<!-- header -->
-	<div class="jumbotron">
+	<div style="background:transparent" id="header" class="jumbotron">
 		<h1 class="text-center">Create Data</h1>
 	</div>
 	<div class="container">
 		<!-- Check for errors and display -->
 		@if ($errors->any())
-			<h5 class="alert alert-danger">{{ $errors->first() }}</h5>
+			<h5 id="error" class="alert alert-danger">{{ $errors->first() }}</h5>
 		@endif
 		<!-- If submission is successful, display alert box -->
 		@if (session('success'))
 			<h5 class="alert alert-success">{{ session('success') }}</h5>
 		@endif
 		<!-- Form to collect data to be added to table -->
-		<form action="{{ url('create') }}" method="POST">
+		<form id="form" action="{{ url('create') }}" method="POST">
 			@csrf
 			<div class="form-group mb-3">
 				<label for=""><b>Name:</b></label><br>
