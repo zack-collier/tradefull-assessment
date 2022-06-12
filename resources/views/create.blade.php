@@ -18,23 +18,31 @@
 	    body {
 		font-family: 'Nunito', sans-serif;
 	    }
+	    input {
+		background-color: #eee;
+	    }
 	</style>
     </head>
     <body class="antialiased">
+	<!-- header -->
+	<div class="jumbotron">
+		<h1 class="text-center">Create Data</h1>
+	</div>
 	<div class="container">
-		<!-- If there is a status, show it -->
-		@if (session('status') == "Failed to Add Data: Name cannot be null") 
-			<h5 class="alert alert-danger">{{ session('status') }}</h5>
+		<!-- Check for errors and display -->
+		@if ($errors->any())
+			<h5 class="alert alert-danger">{{ $errors->first() }}</h5>
 		@endif
-		@if (session('status') == "Data Added")
-			<h5 class="alert alert-success">{{ session('status') }}</h5>
+		<!-- If submission is successful, display alert box -->
+		@if (session('success'))
+			<h5 class="alert alert-success">{{ session('success') }}</h5>
 		@endif
 		<!-- Form to collect data to be added to table -->
 		<form action="{{ url('create') }}" method="POST">
 			@csrf
 			<div class="form-group mb-3">
-				<label for="">Name</label>
-				<input type="text" name="name">
+				<label for=""><b>Name:</b></label><br>
+				<input type="text" name="name" placeholder="Must not be empty">
 			</div>
 			<div class="form-group mb-3">
 				<button type="submit" class="btn btn-primary">Add Data</button>

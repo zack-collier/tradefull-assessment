@@ -14,18 +14,16 @@ use App\Http\Controllers\DataController;
 |
 */
 
-Route::get('/', function () {
-    return view('display');
-});
+Route::get('/', [DataController::class, 'display']);
 
 Route::get('/create', [DataController::class, 'create']);
 
 Route::post('/create', [DataController::class, 'store']);
 
-Route::get('/update', function () {
-    return view('update');
-});
+Route::get('/update', [DataController::class, 'update']);
 
-Route::get('/delete', function () {
-    return view('delete');
-});
+Route::post('/update', [DataController::class, 'alter']);
+
+Route::get('/delete', [DataController::class, 'delete']);
+
+Route::post('/delete', [DataController::class, 'remove']);
